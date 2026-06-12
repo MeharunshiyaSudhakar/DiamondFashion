@@ -76,13 +76,13 @@ const Hero3D = () => {
                 ctx.lineTo(-this.size, 0);
                 ctx.closePath();
 
-                ctx.strokeStyle = '#d4af37';
+                ctx.strokeStyle = '#000000';
                 ctx.globalAlpha = this.opacity;
                 ctx.stroke();
 
                 // Add a slight glow
                 ctx.shadowBlur = 10;
-                ctx.shadowColor = '#d4af37';
+                ctx.shadowColor = 'rgba(0,0,0,0.2)';
 
                 ctx.restore();
             }
@@ -100,8 +100,8 @@ const Hero3D = () => {
                 canvas.width / 2, canvas.height / 2, 0,
                 canvas.width / 2, canvas.height / 2, canvas.width / 1.5
             );
-            grad.addColorStop(0, 'rgba(42, 48, 32, 0.4)');
-            grad.addColorStop(1, 'rgba(26, 29, 20, 0)');
+            grad.addColorStop(0, 'rgba(240, 240, 240, 0.4)');
+            grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
             ctx.fillStyle = grad;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -113,7 +113,7 @@ const Hero3D = () => {
             // Draw connecting lines if close
             ctx.beginPath();
             ctx.lineWidth = 0.5;
-            ctx.strokeStyle = 'rgba(212, 175, 55, 0.1)';
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.1)';
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;

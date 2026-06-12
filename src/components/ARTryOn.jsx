@@ -16,7 +16,7 @@ const ARTryOn = ({ product, onClose }) => {
 
     useEffect(() => {
         const img = new Image();
-        img.src = `${import.meta.env.VITE_API_URL}${product.images?.[0] || product.image}`;
+        img.src = `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}${product.images?.[0] || product.image}`;
         img.crossOrigin = 'anonymous'; // Critical for getImageData
         img.onload = () => {
             const offscreen = document.createElement('canvas');
@@ -203,15 +203,15 @@ const ARTryOn = ({ product, onClose }) => {
             {/* Header */}
             <div style={{
                 padding: '20px 40px', display: 'flex', justifyContent: 'space-between',
-                alignItems: 'center', background: 'var(--bg-deep-olive)', borderBottom: '1px solid var(--border-gold)'
+                alignItems: 'center', background: 'var(--bg-primary)', borderBottom: '1px solid var(--border-color)'
             }}>
                 <div>
-                    <h2 style={{ color: 'var(--primary-gold)', margin: 0, fontSize: '1.2rem', fontStyle: 'italic' }}>Maison AR Mirror</h2>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '2px', margin: '5px 0 0' }}>Virtual Try-On Protocol</p>
+                    <h2 style={{ color: 'var(--text-primary)', margin: 0, fontSize: '1.2rem', fontWeight: '600' }}>AR Mirror</h2>
+                    <p style={{ color: 'var(--text-secondary)', fontSize: '0.6rem', textTransform: 'uppercase', letterSpacing: '2px', margin: '5px 0 0' }}>Virtual Try-On</p>
                 </div>
                 <button
                     onClick={onClose}
-                    style={{ background: 'transparent', border: 'none', color: 'var(--primary-gold)', cursor: 'pointer' }}
+                    style={{ background: 'transparent', border: 'none', color: 'var(--text-primary)', cursor: 'pointer' }}
                 >
                     <X size={30} />
                 </button>
@@ -250,8 +250,8 @@ const ARTryOn = ({ product, onClose }) => {
 
                 {loading && (
                     <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', background: 'rgba(0,0,0,0.8)' }}>
-                        <div className="luxury-spinner" style={{ width: '50px', height: '50px', border: '2px solid var(--primary-gold)', borderTopColor: 'transparent', borderRadius: '50%', animation: 'rotate 1s linear infinite' }}></div>
-                        <p style={{ color: 'var(--primary-gold)', marginTop: '20px', letterSpacing: '2px', fontSize: '0.8rem' }}>CALIBRATING MAISON OPTICS...</p>
+                        <div className="luxury-spinner" style={{ width: '50px', height: '50px', border: '2px solid #ffffff', borderTopColor: 'transparent', borderRadius: '50%', animation: 'rotate 1s linear infinite' }}></div>
+                        <p style={{ color: '#ffffff', marginTop: '20px', letterSpacing: '2px', fontSize: '0.8rem' }}>CALIBRATING CAMERA...</p>
                     </div>
                 )}
 
@@ -263,13 +263,13 @@ const ARTryOn = ({ product, onClose }) => {
             </div>
 
             {/* Footer / Controls */}
-            <div style={{ padding: '30px', background: 'var(--bg-deep-olive)', borderTop: '1px solid var(--border-gold)', textAlign: 'center' }}>
-                <p style={{ color: 'var(--text-muted)', fontSize: '0.7rem', marginBottom: '15px' }}>Position yourself in the frame for optimal fitting.</p>
+            <div style={{ padding: '30px', background: 'var(--bg-primary)', borderTop: '1px solid var(--border-color)', textAlign: 'center' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '0.7rem', marginBottom: '15px' }}>Position yourself in the frame for optimal fitting.</p>
                 <div style={{ display: 'flex', justifyContent: 'center', gap: '20px' }}>
-                    <button className="btn-luxury" style={{ width: 'auto', padding: '12px 30px' }}>
-                        <Camera size={18} style={{ marginRight: '10px' }} /> CAPTURE MOMENT
+                    <button className="btn-primary" style={{ width: 'auto', padding: '12px 30px' }}>
+                        <Camera size={18} style={{ marginRight: '10px' }} /> CAPTURE
                     </button>
-                    <button className="btn-luxury" style={{ width: 'auto', padding: '12px 30px', background: 'transparent', border: '1px solid var(--primary-gold)', color: 'var(--primary-gold)' }}>
+                    <button className="btn-secondary" style={{ width: 'auto', padding: '12px 30px' }}>
                         <RefreshCw size={18} style={{ marginRight: '10px' }} /> RE-CALIBRATE
                     </button>
                 </div>

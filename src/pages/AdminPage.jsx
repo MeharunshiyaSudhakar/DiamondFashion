@@ -19,7 +19,7 @@ const AdminPage = () => {
         setError('');
         setLoading(true);
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/login`, { email, password });
+            const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/auth/login`, { email, password });
 
             if (res.data.user.role !== 'admin') {
                 setError('AUTHENTICATION FAILED: Restricted Access Only.');
@@ -38,6 +38,7 @@ const AdminPage = () => {
     return (
         <div className="page-container" style={{
             backgroundColor: 'var(--bg-deep-olive)',
+            color: 'var(--text-light)',
             height: '100vh',
             display: 'flex',
             alignItems: 'center',
@@ -55,7 +56,7 @@ const AdminPage = () => {
                     animate={{ opacity: 1, scale: 1, y: 0 }}
                     exit={{ opacity: 0, scale: 1.1, y: -20 }}
                     transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    className="glass-morphism"
+                    className="admin-glass"
                     style={{
                         width: '100%',
                         maxWidth: '450px',

@@ -14,8 +14,8 @@ import OrdersPage from './pages/OrdersPage';
 import ProductPage from './pages/ProductPage';
 import ProfilePage from './pages/ProfilePage';
 import WishlistPage from './pages/WishlistPage';
-import ExperiencePage from './pages/ExperiencePage';
-import VirtualTourView from './pages/VirtualTourView';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
 
 export const AuthContext = createContext();
 export const CartContext = createContext();
@@ -100,7 +100,7 @@ function App() {
     try {
       console.log('Toggling Wishlist for Product:', productId);
       const token = localStorage.getItem('token');
-      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/users/wishlist/${productId}`, {}, {
+      const res = await axios.post(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/users/wishlist/${productId}`, {}, {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -155,14 +155,14 @@ function App() {
               <Route path="/shop" element={<ShopDashboard />} />
               <Route path="/product/:id" element={<ProductPage />} />
               <Route path="/cart" element={<CartPage />} />
-              <Route path="/wishlist" element={<WishlistPage />} />
-              <Route path="/experience" element={<ExperiencePage />} />
-              <Route path="/virtual-tour" element={<VirtualTourView />} />
+              <Route path="/wishlist" element={user ? <WishlistPage /> : <Navigate to="/login" />} />
               <Route path="/orders" element={<OrdersPage />} />
               <Route path="/profile" element={user ? <ProfilePage /> : <Navigate to="/login" />} />
+              <Route path="/terms" element={<TermsPage />} />
+              <Route path="/privacy" element={<PrivacyPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
-              <Route path="/admin-secret-login" element={<AdminPage />} />
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="/admin-dashboard" element={user?.role === 'admin' ? <AdminDashboard /> : <Navigate to="/" />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
